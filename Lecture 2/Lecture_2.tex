@@ -40,21 +40,60 @@ u(x,0) = \varphi(x), u_y(x,0) = \psi(x), & 0 \leqslant x \leqslant a.
 \[
 u(x,y) = 
 \dfrac{2}{a} \sum_{n=1}^{\infty} \int_0^a \varphi(\xi) \sin(\dfrac{ \pi n \xi }{a}) d \xi *
-\dfrac{\sh (\dfrac{\pi n}{a} (d-y))}{\sh( \dfrac{\pi n}{a} d)} \sin \dfrac{\pi n}{a} x +
+\dfrac{\sh (\dfrac{\pi n (d-y)}{a})}{\sh( \dfrac{\pi n d}{a})} \sin (\dfrac{\pi n x}{a}) +
 \dfrac{2}{a} \sum_{n=1}^{\infty} \int_0^a h(\xi) \sin(\dfrac{ \pi n \xi }{a}) d \xi *
-\dfrac{\sh (\dfrac{\pi n}{a} y)}{\sh (\dfrac{\pi n}{a} d)} \sin \dfrac{\pi n}{a} x
+\dfrac{\sh (\dfrac{\pi n y}{a})}{\sh (\dfrac{\pi n d}{a})} \sin( \dfrac{\pi n x}{a})
 \]
 
 \[
 u_y(x,0) = 
 - \sum_{n=1}^{\infty} \dfrac{2 \pi n}{a^2} \int_0^a \varphi(\xi) \sin(\dfrac{ \pi n \xi }{a}) d \xi*
-\cth \dfrac{\pi n d}{a} \sin \dfrac{\pi n}{a} x +
+\cth( \dfrac{\pi n d}{a} )\sin( \dfrac{\pi n x}{a} )+
 \sum_{n=1}^{\infty} \dfrac{2 \pi n}{a^2} \int_0^a h(\xi) \sin(\dfrac{ \pi n \xi }{a}) d \xi *
-\dfrac{\sin( \dfrac{\pi n}{a} x)}{\sh (\dfrac{\pi n}{a} d)} 
+\dfrac{\sin( \dfrac{\pi n x}{a})}{\sh (\dfrac{\pi n d}{a})} 
 \]
 
-Если
+Если $\varphi(x)$ и $\psi(x)$ известны, то обратная задача сводится к задаче определения $h(x)$ из уравнения
 
+\[
+\sum_{n=1}^{\infty} n \int_0^a h(\xi) \sin(\dfrac{ \pi n \xi }{a}) d \xi *
+\dfrac{\sin( \dfrac{\pi n x}{a})}{\sh (\dfrac{\pi n d}{a})} = g(x), \hspace{1cm} 0 \leqslant x \leqslant a;
+\]
+где 
+\[
+g(x) = \psi(x) \frac{a^2}{2 \pi} + \sum_{n=1}^{\infty} n \int_0^a  \varphi(\xi) \sin(\dfrac{ \pi n \xi }{a}) d \xi* \cth (\dfrac{\pi n d}{a}) \sin (\dfrac{\pi n x}{a}).
+\]
+
+Единственность $h(x)$ следует из полноты системы $\{\sin (\dfrac{\pi n x}{a})\}_{n=1}^{\infty}$ на $[0,a]$ в $L_2$.
+
+
+\[
+\int_0^a G(x,\xi) h(\xi) d \xi = g(x), \hspace{1cm} 0 \leqslant x \leqslant a,
+\]
+\[
+G(x,\xi) =  \sum_{n=1}^{\infty} n \sin (\dfrac{\pi n x}{a})  \dfrac{\sin (\dfrac{\pi n \xi}{a})}{\sh (\dfrac{\pi n d}{a})}.
+\]
+
+Ядро $G(x,\xi)$ непрерывно и дифференцируемо в $[0,a]^2$. Т.о. задача решения этого интегрального уравнения некорректна как из $L_2[0,a]$ в $L_2[0,a]$, так и из $C[0,a]$ в $C[0,a]$.
+
+Получим оценку условной устойчивости. Пусть $u$, $u_{xx}$, $u_{xy}$, $u_{yy}$, непрерывны в $\Pi = [0,a] \times [0,b]$ и $\Delta u = 0$ в $\Pi$, $u \ne 0$ в $\Pi$.
+
+Рассмотрим функцию
+
+\[
+P(y) = \int_0^a u^2 (x,y) dx,
+\]
+\[
+P'(y) = 2 \int_0^a u (x,y) u_y(x,y) dx,
+\]
+
+\begin{multline*}
+P''(y) = 2 \int_0^a u (x,y) u_{yy}(x,y) dx + 2 \int_0^a u_y^2 (x,y) dx = \\
+= -2 \int_0^a u (x,y) u_{xx}(x,y)dx + 2 \int_0^a u_y^2(x,y)dx = \\
+=  2 \int_0^a (u_x^2(x,y) + u_y^2(x,y))dx, 
+\end{multline*}
+
+заметим, что
 
 
 
