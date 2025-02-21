@@ -1,0 +1,61 @@
+\documentclass{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{extarrows}
+\usepackage{vmargin}
+\usepackage{MnSymbol}
+\setpapersize{A4}
+\setmarginsrb{2cm}{2cm}{2cm}{2cm}{0pt}{0mm}{0pt}{13mm}
+%\usepackage{cmap}
+
+
+\begin{document}
+
+\centerline{\large Курс лекция для магистров ВМК МГУ}
+\centerline {\textbf{\LARGE Обратные задачи математической физики}}
+\centerline {Затехал Строков Вениамин 2025}
+
+\vspace{0.4cm}
+
+\centerline{\LARGE Лекция 2. Обратные задачи теории потенциала}
+
+\vspace{1cm}
+\centerline{\large Задача продолжения потенциала}
+
+\begin{align}
+\begin{cases}
+\Delta u = 0, & 0 < x < a, 0 < y < b;\\
+u(0,y) = u(a,y) = 0, & 0 \leqslant y \leqslant b;\\
+u(x,0) = \varphi(x), u_y(x,0) = \psi(x), & 0 \leqslant x \leqslant a.
+\end{cases}
+\end{align}
+
+Эту задачу можно рассматривать как обратную к задаче Дирихле, положив $u(x,d) = h(x)$, $0 \leqslant x \leqslant a$, где $d \in (0,b]$ и считая $\psi(x)$ пока неизвестной. 
+
+Запишем решение задачи Дирихле для уравнения Лапласа в $\Pi = [0,a] \times [o,d]$:
+\[
+u(x,y) = 
+\dfrac{2}{a} \sum_{n=1}^{\infty} \int_0^a \varphi(\xi) \sin(\dfrac{ \pi n \xi }{a}) d \xi *
+\dfrac{\sh (\dfrac{\pi n}{a} (d-y))}{\sh( \dfrac{\pi n}{a} d)} \sin \dfrac{\pi n}{a} x +
+\dfrac{2}{a} \sum_{n=1}^{\infty} \int_0^a h(\xi) \sin(\dfrac{ \pi n \xi }{a}) d \xi *
+\dfrac{\sh (\dfrac{\pi n}{a} y)}{\sh (\dfrac{\pi n}{a} d)} \sin \dfrac{\pi n}{a} x
+\]
+
+\[
+u_y(x,0) = 
+- \sum_{n=1}^{\infty} \dfrac{2 \pi n}{a^2} \int_0^a \varphi(\xi) \sin(\dfrac{ \pi n \xi }{a}) d \xi*
+\cth \dfrac{\pi n d}{a} \sin \dfrac{\pi n}{a} x +
+\sum_{n=1}^{\infty} \dfrac{2 \pi n}{a^2} \int_0^a h(\xi) \sin(\dfrac{ \pi n \xi }{a}) d \xi *
+\dfrac{\sin( \dfrac{\pi n}{a} x)}{\sh (\dfrac{\pi n}{a} d)} 
+\]
+
+Если
+
+
+
+
+\end{document}
