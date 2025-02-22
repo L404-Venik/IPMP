@@ -90,10 +90,51 @@ P'(y) = 2 \int_0^a u (x,y) u_y(x,y) dx,
 \begin{multline*}
 P''(y) = 2 \int_0^a u (x,y) u_{yy}(x,y) dx + 2 \int_0^a u_y^2 (x,y) dx = \\
 = -2 \int_0^a u (x,y) u_{xx}(x,y)dx + 2 \int_0^a u_y^2(x,y)dx = \\
-=  2 \int_0^a (u_x^2(x,y) + u_y^2(x,y))dx, 
+=  2 \int_0^a (u_x^2(x,y) + u_y^2(x,y))dx.
 \end{multline*}
 
-заметим, что
+Заметим, что
+
+\begin{multline*}
+\dfrac{d}{dy} \int_0^a u_x^2(x,y)dx =
+ 2 \int_0^2 u_x(x,y) u_{xy}(x,y) dx = 
+ 2 u_x(x,y) u_y(x,y) \bigg|_0^a - 2 \int_0^a u_{xx}(x,y) u_y(x,y) dx =\\
+= \bigg\{ u_y(x,y) = 0, u_{xx}(x,y) = u_{yy}(x,y) \bigg\} =
+ 2 \int_0^a u_{yy}(x,y) u_y(x,y) dx = \dfrac{d}{dy} \int_0^a u_y^2(x,y)dx
+\end{multline*}
+
+Т.е.
+
+\[
+\int_0^a u_x^2(x,y)dx = \int_0^a u_y^2(x,y) dx + \int_0^a (u_x^2(x,0) - u_y^2(x,y)) dx
+\]
+
+\[
+p''(y) = 2 \int_0^a u(x,y) u_{yy}(x,y)dx + 2 \int_0^a u_y^2(x,y) dx = 4 \int_0^a u_y^2(x,y) dx + 4q,
+\]
+\[
+q = \dfrac{1}{2} \int_0^a (u_x^2(x,0) - u_y^2(x,0))dx.
+\]
+
+Рассмотрим функцию $k(y) = h(p(y) + |q|)$.
+
+\[
+k'(y) = \dfrac{p'(y)}{p(y) + |q|}, 
+\]
+\[
+k''(y) = \dfrac{p''(y) (p(y) + |q|) - (p'(y))^2}{(p(y) + |q|)^2} = 
+\]
+\[
+=\dfrac{4}{(p(y) + |q|)^2} \bigg[ \int_0^a u_y^2(x,y) dx \int_0^a u^2(x,y)dx + q \int_0^a u^2(x,y) dx + |q| \int_0^a u_y^2(x,y)dx + q |q| - (\int_0^a u(x,y) u _y(x,y)dx)^2 \bigg]
+\]
+
+$\Rightarrow $ по неравенству Коши-Буняковского
+
+\[
+k''(y) \geqslant \dfrac{4q}{(p(y) + |q|)} \geqslant -4.
+\]
+
+Рассмотрим функцию
 
 
 
