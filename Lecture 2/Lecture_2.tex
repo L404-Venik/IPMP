@@ -134,7 +134,64 @@ $\Rightarrow $ по неравенству Коши-Буняковского
 k''(y) \geqslant \dfrac{4q}{(p(y) + |q|)} \geqslant -4.
 \]
 
-Рассмотрим функцию
+Рассмотрим функцию $\omega(y) = k(y) + 2y(y-b)$. Т.к. $\omega '' (y) = k''(y) + 4 \geqslant 0 $ при $y \in [a,b]$, следует
+
+\[
+\omega(y) \leqslant \omega(0)(b-y)/b + \omega(b)y/b \Rightarrow
+\]
+\[
+k(y) \leqslant k(0)(b-y)/n + k(b) y/b - 2y(y-b) \Rightarrow
+\]
+\[
+\ln (p(y) +|q|) \leqslant \dfrac{b-y}{b} \ln (p(0) + |q|) + \frac{y}{b} \ln(p(b) +|q|) - 2y(y-b) \Rightarrow
+\]
+\[
+p(y) \leqslant (p(0) + |q|)^{\dfrac{b-y}{b}} * (p(b) +|q|)^{\dfrac{y}{b}} e^{2y(b-y)} - |q|
+\]
+
+Получим оценку устойчивости
+
+Пусть $u_j(x,y)$ удовлетворяет краевым условиям $\varphi_j(x)$ и $\psi_j(x)$ и всем условиям поставленным для $u(x,y)$ ране, и пусть
+
+\[
+\int_0^a u_j^2(x,b)dx \leqslant C^2.
+\]
+Положим $u(x,y) = u_1(x,y) - u_2(x,y)$, тогда  $|| u(x,b)||_{L_2[0,a]}^2 \leqslant 4 C^2$
+
+Из полученного дляо $p(y)$ неравенства имеем
+\[
+||u_1(x,y) - u_2(x,y) ||_{L_2[0,a]}^2 \leqslant (|| \varphi_1(x) - \varphi_2(x)||_{L_2[0,a]}^2 + |q|) ^{\dfrac{b-y}{b}} (4C^2 +|q|)^{\frac{y}{b}} e^{2y(b-y)} - |q|,
+\]
+где
+\[
+q = \dfrac{1}{2} \int_0^a [(\varphi_1'(x) - \varphi_2'(x))^2 + (\psi_1(x) - \psi_2(x))^2 ] dx,
+\]
+\[
+|q| \leqslant \dfrac{1}{2} ||\varphi_1' - \varphi_2'||_{L_2[0,a]}^2 + \dfrac{1}{2} ||\psi_1 - \psi_2||_{L_2[0,a]}^2.
+\]
+
+
+\vspace{1cm}
+\centerline{\large Обратная задача гравиметрии}
+
+ОЗ состоит в определении формы и плотности тела по ньютоновому потенциалу. Рассмотрим ньютонов потенциал тела $T$ с протностью $\rho(M)$:
+\[
+u(m) = \iiint_T \\dfrac{\rho(M')}{z_{MM'}}d\tau_{M'}
+\]
+Известно, что плотность $\rho(M)$ по потенциалу, заданному на сфере $S_R$ ( поверхности тела $T$) не определяется однозначно.
+
+Пусть $\rho_1 \neq \rho_2$ и создают одинаковый потенциал для тела $T$. Обозначим $\rho_1 - \rho_2 = \sigma(M)$, и $u_1|_S_R = u_2|_S_R \Rightarrow u_1 = u_2$ вне сферы $S_R$ и, более того вплоть до границы тела T.
+
+Рассмотрим $\sigma(M) = \Delta \omega(M)$, где $ \omega \in C^2(T)$ и $\omega|_{\partial T} = \dfrac{\partial \omega}{\partial n}|_{\partial T} = 0$. Тогда из II формулы Грина имеем для любой гармонической в $T$ функции $v$: 
+\[
+\iiint_T (v \Delta \omega - \omega \Delta v) d\tau
+\]
+
+
+
+
+
+
 
 
 
