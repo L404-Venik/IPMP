@@ -12,6 +12,8 @@
 \setmarginsrb{2cm}{2cm}{2cm}{2cm}{0pt}{0mm}{0pt}{13mm}
 %\usepackage{cmap}
 
+\newtheorem{theorem}{Теорема}
+
 
 \begin{document}
 
@@ -31,7 +33,60 @@
 z = \varphi(x,y), z = \psi(x,y).
 \]
 
-Теорема (единственности): 
+\begin{theorem}
+(единственности): \\
+При постоянной известной плотности двух тел допустим, что тела обладают параллельными средними плоскостями и центры тяжести расположены внутри тел. Тогда при равенстве внешних потенциалов тела совпадают.
+\end{theorem}
+Доказательство:
+
+Если
+\[
+v(M) = \iiint_T \dfrac{\sigma(M')}{z_{MM'}} d \tau_{M'} = 0,
+\]
+вне тела $T$, то $\sigma \bot \forall$ гармонической функции $u(M)$ в $T$. Действительно, из II формулы Грина имеем:
+\[
+\iiint_T (\Delta v u - \Delta u v) d \tau = \{\Delta u = 0\} = \iint_{\partial T} [\dfrac{\partial v}{\partial n} u - \dfrac{\partial u}{\partial n} v] ds = 0 = - 4 \pi \iiint \sigma u d\tau.
+\]
+
+Рассмотрим тело $T_1 \bigcup T_2$, для $T_1$, $T_2$, имеющих параллельные средние плоскости $z = z_1$ и $z = z_2$.
+Тогда $\forall$ гармонической функции $u(M)$ в $T$:
+\[
+\iiint_{T = T_1 \bigcup T_2} \sigma (M) u(M) d\tau_M = 0 
+\]
+где
+\[
+\sigma(M) = 
+	\begin{cases}
+	1, & M \in T_1 \setminus (T_1 \bigcap T_2);\\
+	0, & M \in T_1 \bigcap T_2;\\
+	-1, &M \in T_2 \setminus (T_1 \bigcap T_2).
+	\end{cases}
+\]
+т.е. $\sigma (M) = \sigma_1 - \sigma_2$ - разность плотностей.
+
+\vspace{0.5cm}
+\includegraphics[scale=0.85]{pic1.png}
+
+Рассмотрим 
+\[
+f(P) = 
+	\begin{cases}
+	1, & z < z_1, P \in S_1;\\
+	1, & z > z_2, P \in S_2;\\
+	0, & \text{иначе}.
+	\end{cases}
+\]
+и поставим задачу Дирихле в $T$:
+\[
+\begin{cases}
+\Delta F = 0, & M \in T;\\
+F \bigg|_S = f, & S = \partial T.
+\end{cases}
+\]
+
+
+
+
 
 
 
