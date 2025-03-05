@@ -84,8 +84,38 @@ F \bigg|_S = f, & S = \partial T.
 \end{cases}
 \]
 
+Очевидно, что $\dfrac{\partial F}{\partial z}$ гармоническая в $T$. По формуле Остроградского имеем:
+\[
+\begin{split}
+\iiint_T \sigma \dfrac{\partial F}{\partial z} dx dy dz = 
+\iiint_{T_1} \sigma_1 \dfrac{\partial F}{\partial z} dx dy dz &- 
+\iiint_{T_2} \sigma_2 \dfrac{\partial F}{\partial z} dx dy dz=\\
+= - \iint_{S_1} F \bigg|_{z<z_1} dx dy - \iint_{S_2} F \bigg|_{z>z_2} dx dy &+ \iint_{S_1} F \bigg|_{z>z_1} dx dy + \iint_{S_2} F \bigg|_{z<z_2} dx dy = \\
+= -f \bigg|_{z<z_1}|s_1| - f \bigg|_{z > z_2} |s_2| &+ F^* \bigg|_{z_>z_1} |s_1| + F^{**} \bigg|_{z_>z_2} |s_2|
+\end{split}
+\]
+где $F^*$ - среднее по поверхности $S_1$ при $z > z_1$, $F^{**}$ - по поверхности $S_2$ при $z <z_2$, $|S_1|$, $|S_2|$ - площади сечений. Но $f \bigg|_{z<z_1} = 1, f \bigg|_{z>z_2} = 1$, а $F^* F^{**} < 1$ по принципу max, т.к. $T_1 \bigcap T_2$ - общая часть - внутренняя часть тела $T$. Это является следствием того, что центр тяжести тел совпадает и лежит внутри тел.
+
+Таким образом:
+\[
+\iiint_T \sigma \dfrac{\partial F}{\partial z} d \tau = (F^{***} -1)(|s_1| + |s_2|) < 0,
+\]
+
+Противоречие!
 
 
+Замечание: Для выпуклого тела цент тяжести лежит внутри тела. Пусть $O$ - центр тяжести.
+\[
+\begin{split}
+u(M) = \iiint_T \dfrac{\rho(M')}{| \overrightarrow{r}_{M'O} + \overrightarrow{r}_{OM} |} d \tau_{M'} = \iiint_T \rho(M') [ \dfrac{1}{r_{OM}} + \overrightarrow{r}_{M'O} \overrightarrow{\nabla} \dfrac{1}{r_{OM}} + \mathcal{O} (\dfrac{1}{R_{OM}^3})] d\tau_{M'} = \\
+=\dfrac{1}{R_{OM}} \iiint_T \rho(M') d \tau_{M'} + \dfrac{\overrightarrow{r}_{OM}}{r_{OM}^3} \iiint_T \rho(M') \overrightarrow{r}_{OM} d \tau_{M'} + \mathcal{O} (\dfrac{1}{r_{OM}^3}) = \dfrac{m}{r_{OM}} + \dfrac{\overrightarrow{r}_{OM}}{r_{OM}^2} \overrightarrow{\mu}_0 + \mathcal{O} (\dfrac{1}{R_{OM}^3})
+\end{split}
+\]
+
+Определение: Точка $O$ такая что $\overrightarrow{\mu}_0 = 0$ называется центром тяжести тела.
+
+Из асимптотики  потенциалов, совпадающих вне тел $u(M) \to 0$, при $M \to \infty$ получаем, что центр тяжести тел - их общая точка. Действительно, пусть $u_1(M) = u_2(M)$ вне $S_R$ и пусть $O_1$ - центр тяжести $T_1$. Тогда
+ 
 
 
 
