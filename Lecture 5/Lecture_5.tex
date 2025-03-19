@@ -1,0 +1,55 @@
+\documentclass{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{extarrows}
+\usepackage{vmargin}
+\usepackage{MnSymbol}
+\setpapersize{A4}
+\setmarginsrb{2cm}{2cm}{2cm}{2cm}{0pt}{0mm}{0pt}{13mm}
+%\usepackage{cmap}
+
+\newtheorem{theorem}{Теорема}
+
+
+\begin{document}
+
+\centerline{\large Курс лекция для магистров ВМК МГУ}
+\centerline {\textbf{\LARGE Обратные задачи математической физики}}
+\centerline {Затехал Строков Вениамин 2025}
+
+\vspace{0.4cm}
+
+\centerline{\LARGE 	Лекция 5. Некорректные и обратные задачи распространения волн}
+\centerline{\LARGE 	в трещеноватой среде}
+
+\vspace{0.5cm}
+
+\centerline{\large Волновое уравнение с комплексной скоростью}
+
+На трещинах происходит рэлеевское рассеяние
+\[
+\begin{cases}
+s_{tt} = a^2 s_{xx} - 2 \nu p_{tt}, & 0 < \nu \leqslant 1;\\
+p_{tt} = a^2 p_{xx} + 2 \nu s_{tt}, & s ~ \sqrt{\nu}
+\end{cases}
+\]
+
+$\{p,s\} = \overrightarrow{w} = p + i s$, $ \overrightarrow{w}_{tt} = a^2(1- i\nu)^2 \overrightarrow{w}_{xx}$ (с точностью до $\nu^2$)
+
+Рассмотрим частное решение вида 
+$\overrightarrow{w} = \overrightarrow{A}(k) e^{i(\omega t - k x)}$. 
+Возникает условие разрешимости системы
+
+$$
+\begin{matrix}
+\omega^2 - a^2 k^2  	&  2 \nu \omega^2 \\
+- 2 \nu \omega^2		&  \omega^2 - a^2 k^2
+\end{matrix}
+$$
+
+
+\end{document}
