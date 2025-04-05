@@ -1,0 +1,440 @@
+\documentclass{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{extarrows}
+\usepackage{vmargin}
+\usepackage{MnSymbol}
+\setpapersize{A4}
+\setmarginsrb{2cm}{2cm}{2cm}{2cm}{0pt}{0mm}{0pt}{13mm}
+%\usepackage{cmap}
+
+\newtheorem{theorem}{Теорема}
+\newenvironment{proof}{\paragraph{Доказательство:}}{\hfill$\blacksquare$}
+
+
+\begin{document}
+
+\centerline{\large Курс лекция для магистров ВМК МГУ}
+\centerline {\textbf{\LARGE Обратные задачи математической физики}}
+\centerline {Затехал Строков Вениамин 2025}
+
+\vspace{0.4cm}
+
+\centerline{\LARGE 	Лекция 6. Обратные коэффициентные задачи для УрЧП.}
+\centerline{\LARGE Связь ОЗ для ОДУ и обратными спектральными задачами}
+
+\vspace{0.5cm}
+
+Рассмотрим задачу о колебании неоднородной  струны ( пусть $\hat{T}(y) = const = \hat{T}_0 = 1$):
+\begin{equation*}
+\texttt{ПЗ}
+\begin{cases}
+	\rho(y) \omega_{tt} = \omega_{yy}, & 0<y<\infty;\\
+	\omega_t(y,0) = \omega(y,0) = 0, & y > 0;\\
+	\omega(0,t) = \varphi(t).
+\end{cases}
+\end{equation*}
+
+\begin{equation*}
+\rho(y) =
+\begin{cases}
+	\rho(y), & 0 \leqslant y \leqslant \infty;\\
+	\rho_0 = const , & y > L.\\
+\end{cases}
+\end{equation*}
+
+$\rho(y) \in C^1[0,\infty]$
+
+ОЗ: Дано $\omega(L,T) = f(t)$, $\rho_0$. Найти $\rho(y)$.
+Это задача на просвечивание.
+Сделаем упрощающие замены:
+\begin{equation}
+a(y) = \sqrt{\dfrac{\hat{T}_0}{\rho(y)}}, 
+\hspace{0.5cm}
+a_L^2 = \frac{\hat{T}_0}{\rho_0}
+\end{equation}
+
+
+Введем новую независимую переменную - эйконал
+\begin{equation}
+    x(y) = \int_0^y a(y) dy,
+\end{equation}
+которая характеризует сигнал от $y=0$.
+
+\begin{equation*}
+    \frac{dx}{dy} = \frac{1}{a(y)}, \quad \frac{\partial}{\partial y} = \frac{1}{a(y)} \frac{\partial}{\partial x} \equiv \frac{1}{c(x)} \frac{\partial}{\partial x}.
+\end{equation*}
+
+Функция $y(x)$ обратна к $x(y)$, и 
+\begin{equation*}
+    y(x) = \int_0^x c(\xi) d\xi.
+\end{equation*}
+
+Преобразуем уравнение:
+\begin{equation*}
+    \hat{w}_{tt} = c(x) \frac{\partial}{\partial x} \left( \frac{1}{c(x)} \frac{\partial}{\partial x} w \right) = \hat{w}_{xx} - \frac{c'(x)}{c(x)} \hat{w}_x,
+\end{equation*}
+
+где $\hat{w}(x,t) = w(y(x),t)$.
+
+Далее пусть $\hat{w} = \sqrt{c(x)} u \Rightarrow$
+\begin{equation*}
+    \sqrt{c(x)} u_{tt} = \sqrt{c(x)} u_{xx} + 2(\sqrt{c(x)})' u_x + (\sqrt{c(x)})'' u  - \frac{c'(x)}{\sqrt{c(x)}} u_x - \frac{c'(x)}{c(x)} (\sqrt{c(x)})' u = 
+    \sqrt{c(x)} \left( u_{xx} + \dfrac{c'(x)}{2c(x)} u  -\left( \frac{c'(x)}{2c(x)} \right)^2 u \right).
+\end{equation*}
+
+Таким образом, получаем уравнение вида:
+\begin{equation*}
+    u_{tt} = u_{xx} - q(x) u,
+\end{equation*}
+где
+\begin{equation*}
+    q(x) = Z'(x) + Z^2(x), \quad Z(x) = -\frac{c'(x)}{2 c(x)}.
+\end{equation*}
+
+$Z(x)$ имеет физический смысл коэффициента отражения. 
+Сведём исходную задачу к задаче на отрезе, на однородной части ($y > L$):
+\begin{equation*}
+	\omega(y,t) = g(t+y/a_L) + h(t - t/a_L);\\
+\end{equation*}
+\begin{equation*}
+	\omega(L,t) = h(t - L/a_L) = f(t),\\
+\end{equation*}
+\begin{equation*}
+	\omega_t(L,t) + a_L \omega_y(L,t) = 0 \quad ~ \quad u_t(T,t) + u_x(T,t) = 0.
+\end{equation*}
+
+$T = \int_0^L \dfrac{d \eta}{a(\eta)} = x(L)$ - оптическая длина отрезка $[0,T]$.
+таким образом
+\begin{equation*}
+\texttt{ПЗ}
+\begin{cases}
+	u_{tt} = u_{xx} - q(x) u, & 0 < x < T, t > 0; \\
+	u(x,0) = u_t(x,0) = 0, & 0 < x < T;\\
+	\sqrt{a_0} u(0,t) = \varphi(t) & t \geqslant 0;\\
+	u_t(T,t) + u_x(T,t) =0.
+\end{cases}
+\end{equation*}
+
+
+ОЗ: Необходимо найти $\rho(y)$. 
+Покажем, что по $f(t)$ можно найти $q(x)$ и $\sqrt{\alpha_0}$, если $\varphi(t)$ известно.
+
+Пусть $|\varphi(t)| \leq M e^{-\alpha t}$ при $\alpha > 0, t > 0$, тогда
+\begin{equation}
+    \exists \hat{\varphi}(p) = \int_0^\infty \varphi(t) e^{-pt} dt \quad \text{при } \operatorname{Re} p > -\alpha,
+\end{equation}
+и введем функцию $v(x,p) =  u(x,t)$.
+Тогда имеем уравнение
+\begin{equation*}
+\texttt{ПЗ}
+\begin{cases}
+    v_{xx} - q(x) v = p^2 v, & \quad 0 < x < T;\\
+    v(0,p) \sqrt{\alpha_0} = \hat{\varphi}(p);\\
+    p v(T,p) + v_x(T,p) = 0.
+\end{cases}
+\end{equation*}
+
+ОЗ: Найти $q(x), a_0$ по известным $\sqrt{a_L}$, $v(T,p) = \tilde{f}(p)$.
+
+Рассмотрим вспомогательную задачу Коши:
+\begin{equation*}
+\begin{cases}
+    \psi'' - q(x) \psi = p^2 \psi(x,p), & 0 < x < T;\\
+    \psi(T,p) = 1, \quad \psi'(T,p) = -p.
+\end{cases}
+\end{equation*}
+
+$\Rightarrow p \psi(T,p) + \psi(T,p) = 0$. $\psi(x,p)$ и  $v(x,p)$ линейно зависимы, что следует из:
+
+\begin{equation*}
+    W(\psi,v;x) \Big|_{x=T} = 
+    \left| \begin{array}{cc} \psi & \psi_x \\
+    v & v_x \end{array} \right| \Big|_{x=T} =
+\end{equation*}
+\begin{equation*}
+    = \psi(T,p) v_x(T,p) - \psi'(T,p) v(T,p)=
+    v_x(T,p) + p v(T,p) = 0. \quad \forall x \in [0,T].
+\end{equation*}
+
+Таким образом:
+\begin{equation*}
+v(x,p) = A(p) \psi(x,p), \quad 
+v(0,p) = A(p) \psi(0,p), \quad \Rightarrow
+\end{equation*}
+
+\begin{equation*}
+v(x,p) = \dfrac{\tilde{\varphi}(p)}{\sqrt{a_0}} \dfrac{\psi(x,p)}{\psi(0,p)}
+\end{equation*}
+
+откуда,
+\begin{equation}
+\sqrt{a_L} v(T,p) = \sqrt{\dfrac{a_L}{a_0}} \dfrac{\tilde{\varphi}(p)}{\psi(0,p)} = \tilde{f}(p).
+\end{equation}
+
+Покажем, что из этого равенства однозначно определяются $a_0$ и $\psi(0,p)$, если $a_L$ известно.
+
+\textbf{Замечание:} Пусть $p = i \lambda$. 
+Рассмотрим следующую задачу на собственные значения и собственные функции:
+\begin{equation}
+\begin{cases}
+	y'' - q(x) y = -\lambda^2 y(x,\lambda), & 0<x<T;\\
+	y(0,\lambda) = 0, \quad  y'(0,\lambda) = 1;\\
+	y'(T,\lambda) + i \lambda y(T,\lambda) = 0.
+\end{cases}
+\label{eigen problem}
+\end{equation}
+
+Очевидно, что собственные значения $\lambda_n$ определяют $p_n = i\lambda_n$ - нули функции $\psi(0,p)$.
+Множество $\{p_n\}$, $\{\lambda_n\}$ будем называть спектром задачи (\ref{eigen problem}).
+
+\textbf{Свойства $\{p_n\}$:}
+\begin{enumerate}
+	\item Если $\{p_n\} \in S$, то $p_n^* \in S$.
+	\item Точек $\{p_n\} \in S$ таких что $ \texttt{Re} p_n = 0$ не более чем одна и это $p_0 = 0$ - простой нуль $\psi(0,p)$.
+	\item На $\forall$ полуплоскости $ \texttt{Re} p \geqslant b > -\infty$ лежит не более конечного числа точек $p_n \in S$.
+	\item $S$ - либо пустое, либо счётное множество.
+	\item Введём $\Psi(p) = \psi(0,p)$. Тогда целая функция $\Psi(p)$ представима своими нулями: \\
+	$\Psi(p) = e^{\beta} p^k \prod_{n = 1}^{\infty} ( 1 - \dfrac{p}{p_n})$, $ k = 0$ или $1$, либо;\\
+	$\Psi(p) = e^{\beta - pT}$.\\
+	Последнее равенство соответствует $q(x) \equiv 0$.
+\end{enumerate}
+
+\begin{theorem}
+Собственные значения $\{\lambda_n\}$ задачи (\ref{eigen problem}) однозначно определяют $q(x) \in C[0,T]$.
+\end{theorem}
+\begin{proof}
+
+Пусть $\{\lambda_n\}$ - собственное значение, тогда $p_n = i \lambda_i$ - нули $\Psi(p_n) = 0$.
+
+Рассмотрим $Y(\lambda) = y'(T,\lambda) + i \lambda y (T,\lambda)$, $ Y(\lambda_n) = 0$. 
+Поскольку $Y(\lambda)$ определяется $e^{\beta}$, то (с учётом асимптотики 
+$$y(T,\lambda) = \dfrac{sin(dT)}{\lambda}(1+\mathcal{O}\dfrac{1}{|\lambda|}),$$
+$$ y'(T,\lambda) = cos(dT)(1 + \mathcal{O}\dfrac{1}{|\lambda|})$$
+для условия $y'(0,\lambda) = 1$) $e^{\beta}$ - однозначно определяется и, следовательно, $Y(\lambda)$ известна точно.
+Но тогда известна и её $\texttt{Re}Y(\lambda)$ и $\texttt{Im}Y(\lambda)$, что при действительном $\lambda$ даёт
+\begin{equation}
+\texttt{Re}Y(\lambda) = y'(T,\lambda) \quad \texttt{и} \quad
+\texttt{Im}Y(\lambda) = \lambda y(T,\lambda).
+\end{equation}
+
+Нули этих функций определяют спектры двух задач на собственные значения и собственные функции на отрезке $[0,T]$:
+\begin{equation}
+\begin{cases}
+	y''- qy = -\mu^2 y(x,\mu),\\
+	y(o,\mu) = y(T,\mu) = 0.
+\end{cases}
+\Rightarrow \{\mu_n\}.
+\end{equation}
+
+\begin{equation}
+\begin{cases}
+	y''- qy = -\nu^2 y(x,\nu),\\
+	y(o,\nu) = y(T,\nu) = 0.
+\end{cases}
+\Rightarrow \{\nu_n\}.
+\end{equation}
+По теореме Борга $\{\mu_n\}, \{\nu_n\}$ определяют $q(x)$ однозначно.
+
+\end{proof}
+
+
+Вернёмся к исходной задаче. 
+Пусть решение ОЗ существует. 
+Тогда речь идёт лишь о единственности.
+Для $z(x)$ имеет место уравнение Риккати 
+\begin{equation*}
+z' + z^2 = q(x), 
+\quad 0<x<T; \quad
+z(x) = -\dfrac{c'(x)}{2c(x)}.
+\end{equation*}
+
+Так как $c'(T) = 0$, то $z(T) = 0 \Rightarrow z(x)$ определяется однозначно и 
+\begin{equation*}
+c(x) = c(0) e^{-\int_0^x z(\xi) d\xi},
+\end{equation*}
+
+где $a_0 = a_L e^{2\int_0^T z(\xi) d\xi}$, $a_0 = c(0)$.
+Далее $y(x) = \int_0^x c(\xi) d\xi$, таким образом $\rho(s) = \hat{T}_0 / a^2(s)$, где $a(s) = c(y^{-1}(s))$.
+
+Задача решена.
+
+
+
+\subsection*{Обратная задача для волнового уравнения на отрезке}
+
+Было доказано, что уравнение колебаний неоднородной струны
+\begin{equation}
+\rho(y) \omega_{tt} = \hat{T}_0 \omega_{yy}, \hspace{0.5cm} \rho \in C^1;
+\end{equation}
+
+можно привести к виду ($u = u(x,y)$)
+\begin{equation}
+u_{tt} = u_{xx} - q(x) u.
+\label{oscillation eq}
+\end{equation}
+
+\begin{equation*}
+q(x) = z'(x) + z^2(x), \hspace{0.5cm} z = -\dfrac{c'(x)}{2 c(x)},
+\end{equation*}
+
+\begin{equation*}
+x(y) = \int_0^y \dfrac{d \eta}{a(\eta)}, \hspace{0.5cm} a(y) = \sqrt{\hat{T}_0/ \rho(y)},
+\end{equation*}
+
+\begin{equation}
+u = \omega(y(x),t)/ \sqrt{c(x)}, 
+\end{equation}
+
+$y(x)$ - функция, обратная к эйконалу $x(y)$. $c(x)$ - скорость в переменной эйконал. $z(x)$ имеет физический смысл коэффициента отражения.
+
+Сделаем упрощающие замены
+\begin{equation*}
+a(y) = \sqrt{\hat{T}_0/ \rho(y)}, \hspace{0.5cm} a_L^2 = \hat{T}_0 / \rho_0
+\end{equation*}
+
+Введём новую независимую переменную - эйконал
+\begin{equation*}
+ x(y) = \int_0^y \dfrac{d \eta}{a(\eta)} 
+ \hspace{0.2cm} \Rightarrow \hspace{0.2cm}
+ \dfrac{dx}{dy} = \dfrac{1}{a(y)}
+\end{equation*}
+
+$x(y)$ - время распространения сигнала от $y$ до 0.
+
+\begin{equation*}
+y(x) = \int_0^x c(\alpha)d\alpha
+\end{equation*}
+
+
+\begin{equation}
+\hat{\omega}_{tt} = c(x) \dfrac{\partial}{\partial x} \left(\dfrac{1}{c(x)} \dfrac{\partial}{\partial x} \omega \right) = \hat{\omega}_{xx} - \dfrac{c'(x)}{c(x)} \hat{\omega}_x,
+\end{equation}
+
+где $\hat{\omega}(x,t) = \omega(y(x),t)$. Далее пусть $\hat{\omega} = \sqrt{c(x)} u$
+\begin{equation*}
+\sqrt{c(x)}u_{tt} = \sqrt{c(x)}u_{xx} + 2 (\sqrt{c(x)})'u_{x} + (\sqrt{c(x)})''u - \dfrac{c'(x)}{\sqrt{c(x)}} u_x - \dfrac{c'(x)}{c(x)}(\sqrt{c(x)})' u =
+\end{equation*}
+\begin{equation*}
+= \sqrt{c(x)} \left(u_{xx} + \dfrac{c'(x)}{2c(x)} u - (\dfrac{c'(x)}{2c(x)})^2 u \right)
+\end{equation*}
+
+при $u_{tt} = u_{xx} - q(x)u$, $q(x) = z'(x) + z^2(x)$, $z(x) = -\dfrac{c'(x)}{2c(x)}$. $z(x)$ имеет физический смысл коэффициента отражения
+
+Поставим для (\ref{oscillation eq}) следующую задачу
+\begin{equation}
+\begin{cases}
+	v_{tt} = v_{xx} - q(x) v, & 0<x<T, t > 0;\\
+	v(x,0) = v_t(x,0) = 0, & 0<x<T;\\
+	v_x(0,t) = -\varphi(t), v(T,t) = 0, & t\geqslant 0.
+\end{cases}
+\label{v task}
+\end{equation}
+
+$T = \int_0^L \dfrac{dy}{a(y)}$, если $y\in[0,L]$. $T$ -оптическая длина отрезка. Вопрос - как связаны $\varphi(t)$ и $\psi(t) = v(0,t)$.
+
+Пусть $q(x) \geqslant 0$, а $\varphi(t)$ и $\psi(t)$ таковы, что для них существует преобразование Лапласа.
+\begin{equation*}
+\tilde{\varphi}(p) = \int_0^{\infty} e^{-pt} \varphi(t) d t,
+\hspace{0.5cm}
+\tilde{\psi}(p) = \int_0^{\infty} e^{-pt} \psi(t) d t,
+\hspace{0.5cm} 
+\operatorname{Re} p \geqslant \alpha > 0
+\end{equation*}
+
+\begin{equation*}
+\tilde{v}(p) = \int_0^{\infty} e^{-pt} v(x,t) d t
+\end{equation*}
+
+При этом 
+\begin{equation*}
+\begin{cases}
+	p \tilde{v} = \tilde{v}_{xx} - q(x) \tilde{v}, & 0<x<T,\\
+	\tilde{v}_x(0,p) = -\tilde{\varphi}(p), \tilde{v}(T,p) = 0.
+\end{cases}
+\end{equation*}
+
+Введём функцию источника краевой задачи (\ref{v task})
+\begin{equation*}
+\begin{cases}
+	g_{tt} = g_{xx} - q(x) g(x,t), & 0<x<T, t > 0;\\
+	g(x,0) = g_t(x,0) = 0, & 0<x<T;\\
+	g_x(0,t) = -\delta(t).
+\end{cases}
+\end{equation*}
+
+\begin{equation*}
+\begin{cases}
+	p^2\tilde{g} = \tilde{g}_{xx} - q(x) \tilde{g}(x,t), & 0<x<T, ;\\
+	g_x(0,p) = -1.
+\end{cases}
+\end{equation*}
+
+Очевидно, что $\tilde{v}(x,p) = \tilde{\varphi}(p) \tilde{g}(x,p) \Rightarrow $
+\begin{equation}
+\tilde{v}(0,p) = \tilde{\varphi}(p)\tilde{g}(0,p) 
+\hspace{0.2cm} ~ \hspace{0.2cm}
+\psi (t) = \int_0^t \varphi(\tau) g(0,t-\tau) d \tau.
+\end{equation}
+
+Таким образом, зная $f(t) = g(0,t)$ можем выразить $\psi(t)$ через $\varphi(t)$ и обратно. Важно, что эта связь определяется сверткой по Лапласу. Имеем также формулу $\frac{\tilde{\psi}(p)}{\tilde{\varphi}(p)} = \tilde{f}(p)$.
+
+Поставим следующую ОЗ. Известны $\varphi(t), \psi(t)$, $t \geqslant 0$. Найти $q(x), x \in [0,T]$. Рассмотрим вспомогательную задачу Коши
+\begin{equation}
+\begin{cases}
+	y'' - q(x) y = -\lambda^2 y(x,\lambda),\\
+	y(T,\lambda) = 0, y'(T,\lambda) = 1.
+\end{cases}
+\end{equation}
+
+где $\alpha^2 = - p^2$. $\tilde{g}(x,p) = C(p) y(x,ip)$ и 
+\begin{equation}
+\tilde{g}(0,p) \equiv \tilde{f}(p) = \dfrac{\tilde{\psi}(p)}{\tilde{\varphi}(p)} = C(p) y(0, ip) = - \dfrac{y(0,ip)}{y'(0,ip)};
+\label{tilde g}
+\end{equation}
+
+\begin{equation*}
+\texttt{т.к.} \hspace{0.5cm}
+\tilde{g}_x(0,p) = -1 = C(p) y'(0, ip) \Rightarrow C(p) = -\dfrac{1}{y'(0,ip)};
+\end{equation*}
+
+Равенство (\ref{tilde g}) справедливо при всех $p \in \mathbb{C}$, т.к. функции $y(0,p)$ целые экпоненциального типа и определяются лишь своими нулями. Эти нули $\lambda_k$ и $\mu_k$ - нули числителя и знаменателя определяют $q(x), x \in [0,T]$ по теореме Борга-Левинсона однозначно.
+
+Покажем что обратная задача - найти $q(x) , x\in [0,T]$ не имеет единственного решения.
+\begin{equation*}
+\texttt{ПЗ}
+\begin{cases}
+	v_{tt} = v_{xx} - q(x) v, & 0 < x < T, t > 0; \\
+	v(x,0) = v_t(x,0) = 0, & 0 < x < T;\\
+	v_x(0,t) = -\varphi(t), v(T,t) = \mu(t), & t \geqslant 0.
+\end{cases}
+\end{equation*}
+
+Имеем $\tilde{v}(x,p) = \tilde{\varphi}(p) \tilde{g}(x,p)$, где $\tilde{g}(x,p) = C(p) y(x,ip)$
+\begin{equation*}
+\begin{cases}
+y'' - a(x) y = -\lambda^2 y(x,\lambda),\\
+y(T,\lambda) = 0, y'(T,\lambda) = 1 \texttt{(нормировка)}.
+\end{cases}
+\end{equation*}
+
+При $x=0$. $\tilde{g}_x(0,p) = -1 = C(p)y'(0,ip) \Rightarrow C(p) = -\frac{1}{y'(0,ip)}$.
+
+Тогда, т.к. $y'(T,ip) = 1 \forall p$:
+\begin{equation*}
+\tilde{v}_x(T,p) = \tilde{\mu}(p) = \tilde{\varphi}(0) \tilde{g}_x(T,p) = \tilde{\varphi}(p) C(p) y'(T,ip) = - \dfrac{\varphi(p)}{y'(0,ip)}
+\end{equation*}
+
+\begin{equation*}
+\Rightarrow \hspace{0.2cm} y'(0,ip) = -\dfrac{\varphi(p)}{\tilde{\mu}(p)}. 
+\end{equation*}
+
+Эта функция $y'(0,ip)$ имеет лишь нули $ \lambda_n = \mathbb{C}$ (на самом деле $\lambda_n$ действительные).
+
+Один спектр $y'(0,\lambda_n) = 0$, $y(T,d_n) = 0$ не определяет $q\in C[0,T]$ единственным образом (можно построить контрпримеры)
+
+\end{document}
