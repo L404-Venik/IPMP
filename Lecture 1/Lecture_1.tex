@@ -10,8 +10,15 @@
 \usepackage{MnSymbol}
 \setpapersize{A4}
 \setmarginsrb{2cm}{2cm}{2cm}{2cm}{0pt}{0mm}{0pt}{13mm}
-%\usepackage{cmap}
 
+%user commands
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+
+\newenvironment{proof}{\paragraph{Доказательство:}}{\hfill$\blacksquare$}
+\newenvironment{definition}{ \paragraph{Определение:}}{\hfill $\blacktriangleleft$}
+\newenvironment{observation}{ \paragraph{Замечание:}}{}
+\newenvironment{hence}{ \paragraph{Следствие:}}{}
 
 \begin{document}
 
@@ -31,8 +38,9 @@
 Математическую физику характеризует то, что на основе установленных закономерностей возможна постановка задач, замкнуто описывающих исследуемый процесс или явление.
 
 В рамках математической физики основным объектом изучения являются причинно-следственные связи и их последствия.
-
-$$ Z \xLongrightarrow{\text{A}} U $$
+\begin{equation*}
+	Z \xLongrightarrow{\text{A}} U
+\end{equation*}
 
 Причина Z, закономерность A, следствие U - это математическая модель \textit{прямой задачи} (ПЗ, PD)
 
@@ -44,8 +52,9 @@ $$ Z \xLongrightarrow{\text{A}} U $$
 \bigskip
 
 Рассмотрим теперь класс задач, в которых по следствию определяется причина:
-
-$$ U \xLongrightarrow{\text{R}} Z $$
+\begin{equation*}
+	U \xLongrightarrow{\text{R}} Z
+\end{equation*}
 
 Следствие U, формальная связь R, причина Z - это математическая модель \textit{обратной задачи} (ОЗ).
 
@@ -110,11 +119,7 @@ $g(x)$ - амплитуда поля тяготения.
 Можно ли найти конкретную границу, т.е. форму резервуара или рудного тела?
 
 
-\bigskip
-
-
-\centerline{\large Корректная и некорректная задачи}
-
+\subsection*{Корректная и некорректная задачи}
 
 Итак, $R(u) = z$ - обратная задача. $u$ дано, требуется найти $z$.
 
@@ -135,17 +140,18 @@ $g(x)$ - амплитуда поля тяготения.
 \textbf{Пример 1}. Определение правой части ОДУ.
 
 Пусть $x \in X = C[0,T], f \in F = C[0,T]$.
-$$
+\begin{equation*}
 \begin{cases}
-x''(t) = f(t), \hspace{1cm} 0 \leqslant t \leqslant T;\\
-x(0) = x'(0) = 0.
+	x''(t) = f(t), \hspace{1cm} 0 \leqslant t \leqslant T;\\
+	x(0) = x'(0) = 0.
 \end{cases}
-$$ 
+\end{equation*}
+
 Задача определения $f(t)$ по $x(t)$ является некорректной.
 Решение единственно, если существует, но оно существует не для $\forall x \in X$.
-Устойчивость отсутствует, например для:\\
+Устойчивость отсутствует, например для:
 $$
-x_n = \frac{1}{n} sin(n^2t) \rightarrow 0, n \rightarrow \infty ,
+	x_n = \frac{1}{n} sin(n^2t) \rightarrow 0, \quad n \rightarrow \infty ,
 $$
 
 $f_n$ - расходится при $n \rightarrow \infty $
@@ -154,59 +160,65 @@ $f_n$ - расходится при $n \rightarrow \infty $
 
 \bigskip
 
-Замечание 1. Если отображение $R$ - линейно, то достаточно исследовать единственность и устойчивость нулевого решения.
+\begin{observation}
+	Если отображение $R$ - линейно, то достаточно исследовать единственность и устойчивость нулевого решения.
+\end{observation}
+\begin{observation}
+	Задаче $R(x) = f$ можно сопоставить эквивалентную задачу решения операторного уравнения $Af = x$, где
+\end{observation}
 
-Замечание 2. Задаче $R(x) = f$ можно сопоставить эквивалентную задачу решения операторного уравнения $Af = x$, где
-
-$$
-Af = \int_0^t (t - \tau) f(\tau) d \tau = x(t), \hspace{1cm} 0 \leqslant t \leqslant T.
-$$
+\begin{equation*}
+	Af = \int_0^t (t - \tau) f(\tau) d \tau = x(t), \hspace{1cm} 0 \leqslant t \leqslant T.
+\end{equation*}
 
 \bigskip
 
 \textbf{Пример 2}. Интегральное уравнение Фредгольма I рода:
 
-$$
-Az = \int_a^b K(x,s) z(s) ds = u(x),  \hspace{1cm} x \in [c,d],
-$$
+\begin{equation*}
+	Az = \int_a^b K(x,s) z(s) ds = u(x),  \hspace{1cm} x \in [c,d],
+\end{equation*}
 При $K \in C([c,d] \times [a,b])$ эта задача некорректна.
 Покажем это на отрезке $[0,\pi]$:
 
 Пусть $Az_0 = u_0$ и $z_n^{(s)} = z_0^{(s)} + N \sin (ns)$.
+\begin{equation*}
+	u_n(x) - u_o(x) = N \int_0^{\pi} K(x,s) sin(ns) ds = N K_n(x),  \hspace{1cm} c \leqslant x \leqslant d,  
+\end{equation*}
 
-$$
-u_n(x) - u_o(x) = N \int_0^{\pi} K(x,s) sin(ns) ds = N K_n(x),  \hspace{1cm} c \leqslant x \leqslant d,  
-$$
 где $K_n(x)$ - коэффициенты Фурье $K(x,s)$ по переменным $s$.
 
-Покажем, что $K_n \rightrightarrows 0$ при $n \rightarrow \infty $.
-
+Покажем, что $K_n \rightrightarrows 0$ при $n \rightarrow \infty $.\\
 1) Нетрудно проверить, что $K_n(x) \in C[c,d]$ и $|K_n(x)| < M$, $\forall n \in \mathbb{N}$.\\
-
 2) Последовательность $K_n(x)$ равно степенно непрерывна, поскольку $K_n(x)$ непрерывна и $\Rightarrow$ равномерно непрерывна на $[c,d] \times [a,b]$, 
 т.е. существует $ \omega(h) \rightarrow 0 $ : 
 $$
-|K(x',s') - K(x'',s'')| \leqslant \omega ((x' - x'') + (s' - s'')).
+	|K(x',s') - K(x'',s'')| \leqslant \omega ((x' - x'') + (s' - s'')).
 $$ 
+
 Тогда 
 $$
-|K_n(x') - K_n(x'')| \leqslant \int_0^{\pi} |K(x',s) - K(x'',s)| sin (ns) ds \leqslant \pi \omega (|x' - x''|),
+	|K_n(x') - K_n(x'')| \leqslant \int_0^{\pi} |K(x',s) - K(x'',s)| sin (ns) ds \leqslant \pi \omega (|x' - x''|),
 $$
 $w(h)$ - модуль непрерывности.
 
-По теореме Арцела $\exists K_{n_p}(x) \rightrightarrows 0$ при $p \rightarrow \infty $ $\Rightarrow$ и вся $K_n(x) \rightrightarrows 0$ при $n \rightarrow \infty $.
- Т.о. $\exists \varepsilon(n) > 0, \varepsilon (n) \rightarrow 0, n \rightarrow \infty $: $|K_n(x)| \leqslant \varepsilon(n)$
+По теореме Арцела 
+$\exists K_{n_p}(x) \rightrightarrows 0$ при $p \rightarrow \infty \Rightarrow$
+и вся $K_n(x) \rightrightarrows 0$ при $n \rightarrow \infty $.
+Т.о. $\exists \varepsilon(n) > 0, \varepsilon (n) \rightarrow 0, n \rightarrow \infty $: $|K_n(x)| \leqslant \varepsilon(n)$
 
 Выберем теперь $N = N(n)$ так, что $N(n) \rightarrow 0$ и $N(n)\varepsilon(n) \rightarrow 0$ при $n \rightarrow \infty $ ( например $N(n) = \frac{1}{\sqrt{\varepsilon (n)}}$)
 
 Тогда 
 $$
-z_n(s) - z_0(s) = \frac{1}{\sqrt{\varepsilon (n)}} \sin(ns)
+	z_n(s) - z_0(s) = \frac{1}{\sqrt{\varepsilon (n)}} \sin(ns)
 $$
+
 и 
 $$
-\max_{[0,\pi]}[z_n(s) - z_0(s)| = \frac{1}{\sqrt{\varepsilon (n)}},
-$$ 
+	\max_{[0,\pi]}[z_n(s) - z_0(s)| = \frac{1}{\sqrt{\varepsilon (n)}},
+$$
+
 но $|u_n(x) - u_0(x)| \leqslant \sqrt{\varepsilon (n)}$ $\Rightarrow$ решение неустойчиво, т.е. нет непрерывной зависимости решения от правой части.
 
 \textbf{Пример 3}. (Адамара)
@@ -214,18 +226,18 @@ $$
 Найти $z(x,y)$ : 
 $$
 \begin{cases} 
-z_{xx} + z_{yy} = 0, \hspace{3cm} x \in \mathbb{R}, 0 < y \leqslant b;\\
-
-z(x,0)=0, z_y(x,0) = u(x), \hspace{1cm} x \in \mathbb{R}.
+	z_{xx} + z_{yy} = 0, \hspace{3cm} x \in \mathbb{R}, 0 < y \leqslant b;\\
+	z(x,0)=0, z_y(x,0) = u(x), \hspace{1cm} x \in \mathbb{R}.
 \end{cases}
 $$
 
-Введём для $z(x,y)$ и $u(x)$ равномерные метрики. Тогда задача $z = R(u)$ - некорректна. Действительно, для $ u_n(x) = \frac{1}{n} sin(nx) \rightarrow 0, n \rightarrow \infty $ существует единственное решение.
-
+Введём для $z(x,y)$ и $u(x)$ равномерные метрики. 
+Тогда задача $z = R(u)$ - некорректна. 
+Действительно, для $ u_n(x) = \frac{1}{n} sin(nx) \rightarrow 0, n \rightarrow \infty $ существует единственное решение.
 $$
-z_n(x,y) = \frac{1}{n^2} \sin(nx) \sh(ny) \nrightrightarrows 0
-$$ 
-Например, при $x_n = \frac{\pi}{2n}, y =1$, $z_n(x_n, 1) \rightarrow \infty $ при $n \rightarrow \infty $
+	z_n(x,y) = \frac{1}{n^2} \sin(nx) \sh(ny) \nrightrightarrows 0
+$$
 
+Например, при $x_n = \frac{\pi}{2n}, y =1$, $z_n(x_n, 1) \rightarrow \infty $ при $n \rightarrow \infty $
 
 \end{document}

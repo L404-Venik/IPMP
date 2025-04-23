@@ -1,0 +1,183 @@
+\documentclass{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{extarrows}
+\usepackage{vmargin}
+\usepackage{MnSymbol}
+\setpapersize{A4}
+\setmarginsrb{2cm}{2cm}{2cm}{2cm}{0pt}{0mm}{0pt}{13mm}
+
+%user commands
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+
+\newenvironment{proof}{\paragraph{Доказательство:}}{\hfill$\blacksquare$}
+\newenvironment{definition}{ \paragraph{Определение:}}{\hfill $\blacktriangleleft$}
+\newenvironment{observation}{ \paragraph{Замечание:}}{\\}
+\newenvironment{hence}{ \paragraph{Следствие:}}{}
+
+
+\begin{document}
+
+\centerline{\large Курс лекция для магистров ВМК МГУ}
+\centerline {\textbf{\LARGE Обратные задачи математической физики}}
+\centerline {Затехал Строков Вениамин 2025}
+
+\vspace{0.4cm}
+
+\centerline{\LARGE 	Лекция 10. Единственность решения обратной задачи рассеяния}
+\centerline{\LARGE для системы Дирака }
+
+\vspace{0.5cm}
+
+
+Вернёмся к задаче рассеяния для системы Дирака:
+\begin{equation}
+\begin{cases}
+	v_t + v_x + z(x)u = 0, & x,t>0;\\
+	u_t - u_x - z(x)v = 0;\\
+	v(x,0) = u(x,0) = 0, & x > 0;\\
+	v(0,t) = \varphi(t), & t \geqslant 0.
+\end{cases}
+\label{Dirak system}
+\end{equation}
+
+Поставим следующую обратную задачу на отрезке $[0,T]$:
+\begin{enumerate}
+	\item Пусть $\varphi(t) \in C^1[0,2T]$, $\varphi(0) = q \neq 0$.
+	\item Пусть $f(t) \in C^1[0,2T]$, $f(0) = 0$, $f(t) = u(0,t)$.
+\end{enumerate}
+
+Найти $z(x) \in C[0,T]$.
+
+\begin{theorem}
+	(Единственности)
+	Пусть выполнены условия 1) и 2) и $T>0$. Тогда обратная задача не может иметь более едного решения $z(x) \in C[0,T]$. Эти условия также гарантируют разрешимость в малом.
+\end{theorem}
+\begin{proof}
+	(от противного)
+	
+	Пусть $\exists z_1 \neq z_2$. Проинтегрируем (\ref{Dirak system}) вдоль характеристики $x + \tau = 2t$:
+	
+%\includegraphics[scale=•]{•}
+
+\begin{equation*}
+	u_j(0,2t) - u_j(x,x) = \int_0^t v_j(x,2t-x) z_j(x) dx,
+\end{equation*}
+
+откуда
+\begin{equation*}
+	\int_0^t v_j(x,2t-x)z_j(x) dx = f_j(2t).
+\end{equation*}
+
+Продифференцируем это равенство, представив $v$ как $v_j(x,t) = \varphi(t-x) + V_j(x,t)$:
+\begin{equation*}
+	qz_j(t) + 2 \int_0^t V_{j,t}(x,2t-x) z_j(x) dx = 2f_j'(2t), \quad 0 \leqslant t \leqslant T.
+\end{equation*}
+
+Для $z_1-z_2 = z$ имеем:
+\begin{equation*}
+	qz(t) + \int_0^t V_{1,t} (x,2t-x) z_1(x) dx + \int_0^t V_{2,t}(x,2t-x) z_2(x) dx = 0.
+\end{equation*}
+
+Используя оценку устойчивости для $V_t$, получаем для любого $0 < t \leqslant T$:
+\begin{equation*}
+	||z||_{C[0,T]} \leqslant \text{const} * \int_0^t ||z||_{c[0,\tau]} d\tau.
+\end{equation*}
+
+Из Леммы Гронуолла $\Rightarrow z = 0$ на $[0,T]$.
+\end{proof}
+
+\subsection*{Обратная кинематическая задача сейсмики}
+
+%\includegraphics[scale=•]{•}
+
+ОЗ: по времени $T$ первого вступления в точку дневной поверхности $X$ найти $v(z) $ - скорость.
+
+Далее считаем что $v(0) = 1$, $v(z)$ монотонно возрастает и $v \in C^1[0,\infty)$.
+Время распространения сигнала определяется уравнением эйконала:
+\begin{equation*}
+	t_x^2 + t_z^2 = h^2(z), \quad h(z) = \dfrac{1}{v(z)}, \quad z \geqslant 0, -\infty < x < \infty.
+\end{equation*}
+
+Это уравнение описывает фронты волн.
+Сопоставим ему систему Коши, записав в каноническом виде $p^2 + q^2 - h^2(z) = 0$.
+\begin{equation}
+	\dfrac{dx}{ds} = 2p, \quad 
+	\dfrac{dz}{ds} = 2q, \quad
+	\dfrac{dt}{ds} = 2(p^2 + q^2) = 2h^2(z), \quad
+	\dfrac{dp}{ds} = 0, \quad
+	\dfrac{dq}{ds} = 2h'(z) h(z).
+	\label{Cauchy problem}
+\end{equation}
+
+с начальными условиями при $s=0$:
+\begin{equation*}
+	x(0) = z(0) = t(0) = 0; \quad
+	p(0) = p; \quad
+	q(0) = \sqrt{1 - p^2}.
+\end{equation*}
+
+Из (\ref{Cauchy problem}) следует 
+$p =$ const,
+$ q^2(z) = h^2(z) - p^2$,
+$\dfrac{dt}{dz} = \pm \dfrac{h^2(z)}{\sqrt{h^2(z) - p^2}}$,
+$\dfrac{dx}{dz} = \pm \dfrac{p}{\sqrt{h^2(z) - p^2}}$ 
+для таких $z: h(z) \geqslant p$. 
+\begin{equation}
+	t(p) = 2 \int_0^{z_m(p)} \dfrac{h^2(z) dz}{\sqrt{h^2(z) - p^2}}, \quad
+	x(p) = 2 \int_0^{z_m(p)} \dfrac{p dz}{\sqrt{h^2(z) - p^2}},
+	\label{parametrization}
+\end{equation}
+
+где $z_m(p)$ определяется равенством $h(z_m(p)) = p$, а при $z < z_m(p)$ $h(z) > p$.
+
+Нам известна функция $T(x)$ - годограф первых вступлений. Вопрос, как его параметризовать?
+
+Докажем, что $dt(p) = p dx(p)$, а тем самым $\dfrac{dT}{dX} = p$, когда $T = t(p)$, $X = x(p)$. Введём функцию
+\begin{equation*}
+	\tau(p) 2 \int_0^{z_m(p)} \sqrt{h^2(z) - p^2} dz = t(p) - px(p).
+\end{equation*}
+\begin{equation*}
+	\tau'(p) = -2 \int_0^{z_m(p)} \dfrac{p dz}{\sqrt{h^2(z) - p^2}} = x(p) =  t'(p) - px'(p) - x(p) \Rightarrow
+\end{equation*}
+\begin{equation*}
+	t'(p) = p x'(p) \quad \Rightarrow \quad
+	dT = t'(p)dp, \quad dX = x'(p) dp, \quad
+	\dfrac{dT(x)}{dX} \bigg|_{T = t(x), X = x(p)} = p,
+\end{equation*}
+
+таким образом, годограф параметризован: $T(x(p)) = t(p)$, $X = x(p)$.
+
+Введём функцию $Z(p) = \inf\{z | h(z) \leqslant p\}$, т.е. $Z(p)$ - наименьшая глубина, куда не проникает с сейсмический луч с параметром $p$.
+
+Запишем (\ref{parametrization}) в виде
+\begin{equation}
+	t(p) = 2 \int_0^{p} \dfrac{h^2 }{\sqrt{h^2 - p^2}} dZ(h), \quad
+	x(p) = 2 \int_0^{p} \dfrac{p }{\sqrt{h^2 - p^2}} dZ(h),
+	\label{parametrization2}
+\end{equation}
+
+т.к. $h(0) = 1$.
+
+Домножим (\ref{parametrization2}) на $\dfrac{1}{p^2 - q^2}$ и проинтегрируем по $p$ от $q$ до 1 (это возможно в силу теорему Фубини) $\Rightarrow$ 
+\begin{equation*}
+	\int_q^1 \dfrac{x(p) dp}{\sqrt{p^2 - q^2}} =
+	 -2 \int_q^1 \dfrac{1}{\sqrt{p^2 - q^2}} \int_p^1 \dfrac{p dZ(h)}{\sqrt{h^2 - p^2}} dp =
+	  \iint_D dp dh =
+\end{equation*}
+\begin{equation*}
+	  = -2 \int_q^1 \int_q^h \dfrac{p dp}{\sqrt{(p^2 - q^2) (h^2 - p^2)}} dZ(h) = \pi Z(q)
+	  \quad \Rightarrow 
+\end{equation*}
+\begin{equation*}
+	Z(q) = \dfrac{1}{\pi} \int_q^1 \dfrac{x(p) dp}{\sqrt{p^2-q^2}}
+\end{equation*}
+
+эта формула доказывает единственность решения ОЗ. $h(z)$ - функция обратная к $Z(h)$, поскольку $h(Z(h))=h$.
+
+\end{document} 
