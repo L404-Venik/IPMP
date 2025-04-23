@@ -223,7 +223,7 @@ $u_{\eta}(\xi,0) = z(\xi)\theta(\xi)$, поскольку $v_{\xi}(\xi,0) = 0 \R
 \begin{equation*}
 \begin{cases}
 	V_t + V_x + z_1 U = - z U_2, & x,t>0;\\
-	U_t - U_x - z_1 V = z V_2 + z_1(\varphi_1 \varphi_2;\\
+	U_t - U_x - z_1 V = z V_2 + z_1(\varphi_1 - \varphi_2);\\
 	V(0,t) = 0, & t > 0;\\
 	U(x,x) = 0; & x> 0.
 \end{cases}
@@ -235,22 +235,27 @@ $u_{\eta}(\xi,0) = z(\xi)\theta(\xi)$, поскольку $v_{\xi}(\xi,0) = 0 \R
 
 Интегрируя эту систему вдоль соответствующих характеристик получаем:
 \begin{equation*}
-	V(A) - V(B) - \int_{BA} z_1(c) U(c) d \xi(c) = - \int_{BA} z(c) U_2(c) d\xi(c);
+	V(A) - V(B) - \int_{BA} z_1(C) U(c) d \xi(C) = - \int_{BA} z(C) U_2(c) d\xi(C);
 \end{equation*}
 \begin{equation*}
-	U(c) - U(\varepsilon) = \int_{EC} z_1(F) V(F) d\tau(F) - \int_{EC} z(F) V_2(F) d\tau(F) + \int_{EC} z_1(F) (\varphi_1 - \varphi_2) (F) d\tau(F).
+	U(C) - U(E) = \int_{EC} z_1(F) V(F) d\tau(F) - \int_{EC} z(F) V_2(F) d\tau(F) + \int_{EC} z_1(F) (\varphi_1 - \varphi_2) (F) d\tau(F).
 \end{equation*}
-\begin{multline*}
-	A = (x,t): \quad 
-	V(x,t) = -\int_{BA} z(c) U_2(c) d\xi(c) - \int_{BA} z_1(c) U(c) d\xi(c)
-	= -\int_{BA} z_1(c) U_2(c) d\xi(c) - \\
-	- \int{BA} z_1(c)\int_{EC} z_1(F) V(F) d\tau_F d\xi(c) 
-	- \int_{BA} z_1(c) \int_{EC} z(F) V_2(F) d\tau(F) d\xi(c) - \int_{BA} z_1(c) \int_{EC} z_1(F) \varphi(F) d\tau(F) d\xi(c).
-\end{multline*}
+
+A = (x,t):
+\begin{equation*}
+	V(x,t) = -\int_{BA} z(C) U_2(C) d\xi(C) - \int_{BA} z_1(C) U(C) d\xi(C)=
+\end{equation*}
+
+\begin{align*}
+	= -\int_{BA} z(C) U_2(c) d\xi(C) 
+	&- \int_{BA} z_1(C)\int_{EC} z_1(F) V(F) d\tau(F) d\xi(C) -\\
+	- \int_{BA} z_1(C) \int_{EC} z(F) V_2(F) d\tau(F) d\xi(C) 
+	&- \int_{BA} z_1(C) \int_{EC} z_1(F) \varphi(F) d\tau(F) d\xi(C).
+\end{align*}
 
 Пусть $m(t) = \max_{x + \tau \leqslant t} |V(x,\tau)|$. Тогда:
 \begin{equation*}
-	m(t) \leqslant c_0 \max_{\tau \leqslant t} |\varphi(\tau)| + c_1 \int_0^t |z(\tau) d \tau + c_2 \int_0^t m(\tau) d\tau
+	m(t) \leqslant c_0 \max_{\tau \leqslant t} |\varphi(\tau)| + c_1 \int_0^t |z(\tau)| d \tau + c_2 \int_0^t m(\tau) d\tau
 \end{equation*}
 
 Из леммы Гронуолла следует:
@@ -262,9 +267,9 @@ $u_{\eta}(\xi,0) = z(\xi)\theta(\xi)$, поскольку $v_{\xi}(\xi,0) = 0 \R
 	|V_1(x,t) - V_2(x,t)| \leqslant const(y) (||\varphi_1 - \varphi_2||_{C[0,2y]} + \int_0^y ||z_1 - z_2||_{C[0,\tau]} d \tau),
 \end{equation*}
 
-где $x+t \leqslant 2y$, $const$ зависит от $y, \varphi_1, \varphi_2, z_1, z_2$ при $t\leqslant 2y$, $z\leqslant y$.
+где $x+t \leqslant 2y$, $const$ зависит от $y, \varphi_1, \varphi_2, z_1, z_2$ при $t\leqslant 2y$, $x\leqslant y$.
 
-Аналогично для производной $V_t(x,t)$ при $\varphi_1 = \varphi_2$:
+Аналогично для производной $V_t(x,t)$ при $\varphi_1 \neq \varphi_2$:
 \begin{equation*}
 	|V_{1,t} (x,t) - V_{2,t}(x,t)| \leqslant 
 	const(||\varphi_1' - \varphi_2'||_{C[0,2y]} + ||z_1 + z_2||_{C[0,y]});
@@ -298,7 +303,7 @@ $u_{\eta}(\xi,0) = z(\xi)\theta(\xi)$, поскольку $v_{\xi}(\xi,0) = 0 \R
 \item $\varphi(t) \in C^1[0,2T]$, $\varphi(0) = q \neq 0$;
 \item $f(t) \in C^1[0,2T]$, $f(0) = 0$, $ f(t) = u(0,t)$;
 \end{enumerate}
-найти $z(x) \in C[0,t]$.
+найти $z(x) \in C[0,T]$.
 
 \begin{theorem}
 (Единственности)\\
@@ -322,7 +327,7 @@ $u_{\eta}(\xi,0) = z(\xi)\theta(\xi)$, поскольку $v_{\xi}(\xi,0) = 0 \R
 
 Продифференцируем это равенство, представив $v_j = \varphi(t-x) + V_j$, $\varphi(0) = q$:
 \begin{equation*}
-	q z_j(t) + 2 \int_0^t V_{j,t} (x,2t -x) z_j(x) dx = 2f'(2t), \quad 0\geqslant t \geqslant T.
+	q z_j(t) + 2 \int_0^t V_{j,t} (x,2t -x) z_j(x) dx = 2f'(2t), \quad 0 \leqslant t \leqslant T.
 \end{equation*}
 
 Для $z = z_1 - z_2$ имеем:
@@ -332,7 +337,7 @@ $u_{\eta}(\xi,0) = z(\xi)\theta(\xi)$, поскольку $v_{\xi}(\xi,0) = 0 \R
 
 Используем оценку устойчивости для $V_t$:
 \begin{equation*}
-	q||z||_{C[0,T]} \geqslant const \int_0^t ||z||_{C[0,\xi]} d\xi.
+	q||z||_{C[0,T]} \leqslant const \int_0^t ||z||_{C[0,\xi]} d\xi.
 \end{equation*}
 
 Из Леммы Грануолла $\Rightarrow z = 0$.
