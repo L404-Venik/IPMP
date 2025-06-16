@@ -1,0 +1,209 @@
+\documentclass{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{extarrows}
+\usepackage{vmargin}
+\usepackage{MnSymbol}
+\setpapersize{A4}
+\setmarginsrb{2cm}{2cm}{2cm}{2cm}{0pt}{0mm}{0pt}{13mm}
+
+%user commands
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+
+\newenvironment{proof}{\paragraph{Доказательство:}}{\hfill$\blacksquare$}
+\newenvironment{definition}{ \paragraph{Определение:}}{\hfill $\blacktriangleleft$}
+\newenvironment{observation}{ \paragraph{Замечание:}}{\\}
+\newenvironment{hence}{ \paragraph{Следствие:}}{}
+
+
+\begin{document}
+
+\centerline{\large Курс лекция для магистров ВМК МГУ}
+\centerline {\textbf{\LARGE Обратные задачи математической физики}}
+\centerline {Затехал Строков Вениамин 2025}
+
+\vspace{0.4cm}
+
+\centerline{\LARGE 	Лекция 11. Обратная задача электроразведки и }
+\centerline{\LARGE магнитотелургического зондирования.}
+
+\vspace{0.5cm}
+
+Принципиальная схема электроразведки на постоянном токе:
+
+%\includegraphics[scale=1]{pic11_1.png}
+
+\begin{equation}
+\begin{cases}
+	\overrightarrow{j} = \sigma \overrightarrow{E};\\
+	\text{div} \overrightarrow{j} = 0; \quad (\text{нет источников поля})\\
+	\overrightarrow{E} = - \text{grad } v, \quad \Rightarrow \quad rot \overrightarrow{E} = 0. 
+\end{cases}
+\end{equation}
+
+где $\sigma$ - проводимость. 
+
+Далее считаем $\sigma = \sigma(z) \geqslant \sigma_0 > 0$ источник тока в начале координат
+\begin{equation*}
+	\text{div } \sigma \text{ grad } v = 0, \quad z > 0.
+\end{equation*}
+
+и в силу аксиальной симметрии уравнение
+\begin{equation*}
+	\dfrac{\partial^2}{\partial x^2} + \dfrac{\partial^2 v}{\partial y^2} + \dfrac{1}{\sigma(z)}\dfrac{\partial}{\partial z} ( \sigma(z) \dfrac{\partial v}{\partial z}) = 0, \quad z > 0
+\end{equation*}
+
+приобретает вид
+\begin{equation*}
+	\dfrac{1}{\rho} \dfrac{\partial}{\partial \rho} \left( \rho \dfrac{\partial v}{\partial \rho} \right) +
+	 \dfrac{1}{\sigma(z)} \dfrac{\partial}{\partial z} \left( \sigma(z) \dfrac{\partial v}{\partial z} \right) = 0
+	 \quad z > 0,
+\end{equation*}
+
+а решение имеет вид $v(\rho, z) = \dfrac{q}{\sqrt{\rho^2 + z^2}} + \overline{v}(\rho,z)$, $q > 0$, $v(\rho,z) \rightarrow 0$ при $z \rightarrow 0$.
+$\dfrac{\partial v}{\partial z} \bigg|_{z=0} = 0$.
+
+Будем искать $v(\rho,z)$ в виде интеграла Фурье-Бесселя:
+\begin{equation}
+	v(\rho,z) = \int_0^{\infty} Z(z,\lambda) J_0(\lambda\rho) \lambda d \lambda,
+\end{equation}
+
+где $|Z(z,\lambda)| < c e^{-\lambda z}$, $\lambda > 0$.
+Найдём такую $Z(z,\lambda)$.
+
+Напомним что
+\begin{equation*}
+	\dfrac{1}{\rho} \dfrac{\partial}{\partial \rho} \left( \rho \dfrac{\partial}{\partial \rho} J_0(\lambda \rho) \right) + \lambda^2 J_0(\lambda \rho) = 0.
+\end{equation*}
+
+Поскольку интеграл сходится равномерно по $\rho, z$ ( $z$ фиксировано, $\rho$ внешняя переменная), то:
+\begin{equation*}
+	\dfrac{1}{\sigma(z)}\dfrac{\partial}{\partial z} \left( \sigma(z) \dfrac{\partial v}{\partial z} \right) =
+	- \dfrac{1}{\rho} \dfrac{\partial}{\partial \rho} \left( \rho \dfrac{\partial v}{\partial \rho} \right) =
+	\int_0^{\infty} \dfrac{1}{\sigma(z)}\dfrac{\partial}{\partial z} \left( \sigma(z) \dfrac{\partial Z}{\partial z} \right) J_0(\lambda \rho) \lambda d \lambda =
+\end{equation*}
+\begin{equation*}
+	= - \int_0^{\infty} Z(z,\lambda) \dfrac{1}{\rho} \dfrac{\partial}{\partial \rho} \left( \rho \dfrac{\partial J_0(\lambda \rho)}{\partial \rho} \right) \lambda d \lambda = 
+	\int_0^{\infty} \lambda^2 Z(z,\lambda) J_0(\lambda \rho) \lambda d \lambda,
+\end{equation*}
+
+откуда 
+\begin{equation*}
+	\int_0^{\infty} \left[ \dfrac{1}{\sigma(z)} \dfrac{\partial}{\partial z} \left( \sigma(z) \dfrac{\partial Z(z,\lambda)}{\partial z} \right) - \lambda^2 Z(z,\lambda) \right] J_0(\lambda \rho) \lambda d \lambda = 0.
+\end{equation*}
+
+$\forall z > 0, \rho \geqslant 0$ Из взаимо-однозначности преобразования Ф-Б сдедует
+\begin{equation}
+\begin{cases}
+	\dfrac{1}{\sigma(z)} \dfrac{\partial}{\partial z} \left( \sigma(z) \dfrac{\partial Z(z,\lambda)}{\partial z} \right) - \lambda^2 Z(z,\lambda) = 0;\\
+	Z(\infty, \lambda) = 0;\\
+	\dfrac{\partial Z(0,\lambda)}{\partial z} = -q.
+\end{cases}
+\label{Z system}
+\end{equation}
+
+Поскольку $\dfrac{\partial v}{\partial z} \bigg|_{z=0} = 0$, $\dfrac{q}{\sqrt{\rho^2 + z^2}} = q \int_0^{\infty} e^{-\lambda z} J_0(\lambda \rho) d \lambda$, т.е. $Z(z,\lambda) = q \dfrac{e^{-\lambda z}}{\lambda} + \overline{Z}(z, \lambda)$, $\dfrac{\partial \overline{Z}}{\partial z} \bigg|_{z=0} = 0$.
+
+Продифференцируем (\ref{Z system}) по $z$ и введём $Z_1 = -\sigma \dfrac{\partial Z(z,\lambda}{\partial z} = 0$:
+\begin{equation*}
+	\sigma(z) \dfrac{\partial}{\partial z} \left( \dfrac{1}{\sigma(z)}\dfrac{\partial Z_1(z,\lambda}{\partial z} \right) - \lambda^2 Z_1(z,\lambda) =0.
+\end{equation*}
+
+
+Ввдём новую независимую переменную $ \dfrac{1}{\sigma(z)}\dfrac{\partial}{\partial z} = \dfrac{\partial}{\partial x}$, т.е. $\sigma(z) dz = dx \Rightarrow x(z) = \int_0^z \sigma(\xi) d\xi$. 
+Пусть $\sigma = \hat{\sigma}(x(z))$. Далее будем опускать шапку над $\sigma$
+\begin{equation}
+\begin{cases}
+	Z_1^{''} - \dfrac{\lambda}{\sigma^2(x)} Z_1(x,\lambda) = 0;\\
+	Z_1(0,\lambda) = q\sigma(0);\\
+	Z_1(\infty,\lambda) = 0,
+\end{cases}
+\label{Z1 system}
+\end{equation}
+
+где $Z_1^{''} = \dfrac{\partial^2}{\partial x^2} Z(x,\lambda)$.
+
+Эти условия определяют $Z_1(x,\lambda)$ однозначно поскольку решение (\ref{Z1 system}s) при условиях
+
+\begin{lemma}
+	$Z_1'(x,\lambda) < 0 \forall x \geqslant 0$ и $ \forall \lambda > 0$.
+\end{lemma}
+%\begin{proof}
+%	1) Если $Z_1'(x,\lambda) \geqslant 0$, то $Z_1'(x,\lambda) < 0 \forall x > 0$.
+%	Действительно, если $x_0$ - превый нуль $Z_1'(x,\lambda)$, то $Z_1'(x,\lambda) \geqslant 0$ на $[0,x_0]$, $Z_1(0,\lambda) > 0 \Rightarrow Z_1(x,\lambda) > 0$ на $[0,x_0]$. 
+%	В силу уравнения $Z_1^{''}(x,\lambda) > 0$ т.е. $Z(x,\lambda)$ ......
+%\end{proof}
+
+\begin{lemma}
+	Функция Грина $G(x,\xi,\lambda)$ прямой задачи
+	\begin{equation*}
+	\begin{cases}
+		y''(x,\lambda) - \dfrac{\lambda^2}{\sigma^2(x)} y(x,\lambda) = -f(x), & x \geqslant 0;\\
+		y(0,\lambda) = y(\infty,\lambda) = 0.
+	\end{cases}
+	\end{equation*}
+	такова что 
+	\begin{enumerate}
+		\item $G(x,\xi,\lambda) \geqslant 0$, $ 0 \leqslant z,\xi \leqslant 0$ , $\lambda > 0$.
+		\item Если $G_i(x,\xi,\lambda)$ соответствует $\sigma_i(x)$ и $\sigma_1(x) \geqslant \sigma_2(x) \forall x \geqslant 0$, то 
+		$G_1(x,\xi,\lambda) \leqslant G_2(x,\xi,\lambda) \forall x,\xi \geqslant 0, \forall \lambda > 0$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	........
+	где $W = y_2(x,\lambda) y_1'(x,\lambda) - y_1(x,\lambda)y_2'(x,\lambda)$, $y_1, y_2$ - линейно независимые решения
+	.......
+	
+\end{proof}
+
+\begin{theorem}
+	Пусть теперь $\sigma_1(x) \geqslant \sigma_2(x)$ при $\forall x > 0$
+\end{theorem}
+
+\begin{hence}
+	Если $\sigma_1(x) \geqslant \sigma_2(x)$ $\{\sigma_1(x) = \sigma_2(x) = \overline{\sigma_1}$ при $ x \geqslant x_1 \}$, то $Z_1(x,\lambda) \geqslant Z_2(x,\lambda)$.
+\end{hence}
+\begin{proof}
+	\begin{equation*}
+	\begin{cases}
+		Z_i^{''} - \dfrac{\lambda^2}{\sigma_i^2(x)} Z_i(x,\lambda) = 0;\\
+		Z_i(0,\lambda) = q\sigma(0);\\
+		Z_i(\infty,\lambda) = 0.
+	\end{cases}
+	\end{equation*}
+	
+	Для разности $Z = Z_1 - Z_2$
+\end{proof}
+
+\begin{theorem}
+	(Единственности)
+	Если $Z(x,\lambda)$ определяется как решение уравнения 
+	\begin{equation*}
+	\begin{cases}
+		Z^{''} - \dfrac{\lambda^2}{\sigma_i^2(x)} Z(x,\lambda) = 0;\\
+		Z_i(\infty,\lambda) = 0.
+	\end{cases}
+	\end{equation*}
+	где $\sigma(x)$ - кусочно аналитическая функция из класса $\sum = \{ \sigma(x) : \sigma(x) > 0$ при $x \in [0,x_1], \sigma = const > 0$ при $x \geqslant x_1\}$, то $\sigma(x)$ однозначно определяется значениями (импеданса):
+	\begin{equation*}
+		R(\lambda) = \dfrac{Z'(0,\lambda)}{Z(0,\lambda)}
+	\end{equation*}
+\end{theorem}
+\begin{proof}
+	Предположим противоположное, т.е. что существуют $\sigma_1(x) \neq \sigma_2(x)$ для 
+	
+	.......
+	
+	Рассмотрим $[x_2,x_3] \subset (0, x_0)$ такого, что $x_2 / \sigma_m < x_3/\sigma_M$, где $\sigma_m \leqslant \sigma_1(x) \leqslant \sigma_M$.
+	На этом отрезке $q(x) \geqslant q_0 > 0$.
+	Далее для интеграла в () имеем:
+	
+\end{proof}
+
+
+\end{document} 
